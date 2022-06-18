@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "incolumepy.incolume_cli"
-version = "0.1.2-alpha.11"
+version = "0.1.2-alpha.12"
 description = "Command Line Interface"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 packages = [
@@ -20,7 +20,7 @@ zmsg = 'incolumepy.incolume_cli.click.zetcode:messages'
 zcli = 'incolumepy.incolume_cli.click.zetcode:cli'
 asmcli = 'incolumepy.incolume_cli.click.assemblyai:cli'
 sofcli = 'incolumepy.incolume_cli.click.sof:help'
-infosaj = 'incolumepy.incolume_cli.click.mine:infosaj'
+infosaj = 'incolumepy.incolume_cli.click.mine:gen_model'
 
 [tool.poetry.dependencies]
 python = ">=3.8.0,<3.9"
