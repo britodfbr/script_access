@@ -25,5 +25,6 @@ def cli0(ctx, document):
 def main():
    cli0(prog_name="cli")
  
+ 
 if __name__ == '__main__':
    main()

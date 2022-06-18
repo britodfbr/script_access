@@ -3,12 +3,12 @@ from incolumepy.others.xpto import gen_model_conf
 
 @click.group()
 @click.pass_context
-@click.option('-f', "--fileconf", prompt="Your file config name", help="Provide your file config name")
 def infosaj():
     pass
 
-    
+
 @click.pass_context
+@click.option('-f', "--fileconf", prompt="Your file config name", help="Provide your file config name")
 @infosaj.command(name='model')
 def gen_model(fileconf=None):
     gen_model_conf(fileconf)
