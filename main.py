@@ -3,4 +3,5 @@ from incolumepy.incolume_cli.click import hello
 
 
 if __name__ == '__main__':
-    print(system(), version(), release(), hello())
+    print(system(), version(), release())
+    hello()
