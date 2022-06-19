@@ -39,13 +39,13 @@ def test(model):
 
 @click.group()
 @click.pass_context
-def infosaj(ctx):
+def infosaj0(ctx):
     ctx.obj = {}
 
 
 @click.command()
 @click.argument('filename')
-def model(filename):
+def model0(filename):
     """Generate model config file."""
     click.echo(filename)
 
@@ -59,12 +59,56 @@ def model(filename):
               "--fileoutput",
               prompt="Your file output name",
               help="Provide your file output name")
-def generator(fileconfig, fileoutput):
+def generator0(fileconfig, fileoutput):
     """Generate informativo SAJ."""
     click.echo(f'{fileconfig}, {fileoutput}')
 
-infosaj.add_command(model, 'gen')
+infosaj0.add_command(model0, 'gen')
+infosaj0.add_command(generator0)
+
+
+@click.group()
+@click.pass_context
+def infosaj(ctx):
+    """Generate informativo SAJ."""
+    ctx.obj = {}
+    
+@infosaj.command()
+@click.argument('subcommand')
+@click.pass_context
+def help(ctx, subcommand):
+    """Show the help for specific command."""
+    subcommand_obj = infosaj.get_command(ctx, subcommand)
+    if subcommand_obj is None:
+        click.echo("I don't know that command.")
+    else:
+        click.echo(subcommand_obj.get_help(ctx))
+
+@click.command()
+@click.option('-c',
+              "--fileconfig",
+              prompt="Your file config name",
+              help="Provide your file YAML config name")
+@click.option('-o',
+              "--fileoutput",
+              prompt="Your file output name",
+              help="Provide your file HTML output name")
+@click.pass_context
+def generator(ctx, fileconfig, fileoutput):
+    """Generate informativo SAJ."""
+    click.echo(f'{fileconfig}, {fileoutput}')
+
+    
+@click.command()
+@click.argument('fileconfig')
+@click.pass_context
+def model(ctx, fileconfig):
+    """Generate model config file."""
+    click.echo(f'{ctx.obj} {fileconfig}')
+
+infosaj.add_command(model)
 infosaj.add_command(generator)
+
 
 if __name__ == '__main__':
     gen_model_conf()

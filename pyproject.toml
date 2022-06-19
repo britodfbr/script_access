@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "incolumepy.incolume_cli"
-version = "0.1.2-alpha.16"
+version = "0.1.2-alpha.17"
 description = "Command Line Interface"
 authors = ["Britodfbr <britodfbr@gmail.com>"]
 packages = [
