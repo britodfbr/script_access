@@ -42,20 +42,29 @@ def test(model):
 def infosaj(ctx):
     ctx.obj = {}
 
+
 @click.command()
-@click.option('-m',
-              '--model',
-              is_flag=True,
-              default=False,
-              help='if need generate file configurate')
-def generic(model):
-    if model:
-        click.echo('Hello there')
+@click.argument('filename')
+def model(filename):
+    """Generate model config file."""
+    click.echo(filename)
 
 
-infosaj.add_command(generic, 'gen')
-infosaj.add_command(test, 'test')
+@click.command()
+@click.option('-c',
+              "--fileconfig",
+              prompt="Your file config name",
+              help="Provide your file config name")
+@click.option('-o',
+              "--fileoutput",
+              prompt="Your file output name",
+              help="Provide your file output name")
+def generator(fileconfig, fileoutput):
+    """Generate informativo SAJ."""
+    click.echo(f'{fileconfig}, {fileoutput}')
 
+infosaj.add_command(model, 'gen')
+infosaj.add_command(generator)
 
 if __name__ == '__main__':
     gen_model_conf()
