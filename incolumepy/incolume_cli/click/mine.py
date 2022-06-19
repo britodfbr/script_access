@@ -1,34 +1,36 @@
 import click
 from incolumepy.others.xpto import gen_model_conf
 import inspect
-
-@click.group()
-@click.pass_context
-def infosaj():
-    pass
+from pathlib import Path
 
 
-@infosaj.command()
-@click.option('-f',
-              "--fileconf",
-              prompt="Your file config name",
-              help="Provide your file config name")
-def gen_model(fileconf):
+click.command()
+def test():
+    click.secho('Show', fg='green')
+    
+
+click.command()
+@click.option(
+    '-m', 
+    '--model', 
+    is_flag=False, 
+    help='if need generate file configurate')
+@click.option(
+    '-c',
+    "--conffile",
+    prompt="Your file config name",
+    help="Provide your file config name")
+@click.option(
+    '-f',
+    "--filename",
+    prompt="Your file output name",
+    help="Provide your file output name")
+def infosaj(conffile, filename, model):
     click.secho(f'{inspect.stack()[0][3]}', fg='red')
-    gen_model_conf(fileconf)
+    if model:
+        gen_model_conf(conffile)
+    click.secho(Path(filename).as_posix())
 
-
-@infosaj.command()
-@click.option('-f',
-              "--fileconf",
-              prompt="Your file config name",
-              help="Provide your file config name")
-def gen_infosaj(fileconf, fout):
-    click.secho(f'{inspect.stack()[0][3]}', fg='red')
-    gen_model_conf(fileconf)
-
-infosaj.add_command(gen_model, 'genmodel')
-infosaj.add_command(gen_infosaj, 'geninfo')
 
 
 if __name__ == '__main__':
