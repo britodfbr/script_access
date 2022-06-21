@@ -9,7 +9,7 @@ packages = [
 
 [tool.poetry.scripts]
 incolume-test = 'incolumepy.incolume_cli.click.mine:test'
-incolumecl = 'incolumepy.incolume_cli.cli:run'
+incolume-cli = 'incolumepy.incolume_cli.cli:run'
 zout = 'incolumepy.incolume_cli.click.zetcode:output'
 zhello = 'incolumepy.incolume_cli.click.zetcode:hello'
 zcolor = 'incolumepy.incolume_cli.click.zetcode:coloured'
